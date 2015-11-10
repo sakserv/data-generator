@@ -13,5 +13,30 @@
  */
 package com.github.sakserv.datagenerator;
 
-public class RandomFloat {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.text.DecimalFormat;
+import java.util.Random;
+
+public class RandomFloat implements RandomValue<Float> {
+
+    // Logger
+    private static final Logger LOG = LoggerFactory.getLogger(RandomFloat.class);
+
+    // Instance Variables
+    private Random random = new Random();
+    private Integer precision;
+
+    public RandomFloat(Integer precision) {
+        this.precision = precision;
+    }
+
+    public Integer getPrecision() {
+        return precision;
+    }
+
+    public Float getRandomValue() {
+        return Float.parseFloat(String.format("%." + precision + "f", random.nextFloat()));
+    }
 }
