@@ -13,5 +13,37 @@
  */
 package com.github.sakserv.datagenerator;
 
-public class RandomInteger {
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Random;
+
+public class RandomInteger implements RandomValue<Integer> {
+
+    // Logger
+    private static final Logger LOG = LoggerFactory.getLogger(RandomInteger.class);
+
+    // Instance variables
+    private Random random = new Random();
+    private Integer lowerBound;
+    private Integer upperBound;
+
+    public RandomInteger(Integer lowerBound, Integer upperBound) {
+        this.lowerBound = lowerBound;
+        this.upperBound = upperBound;
+    }
+
+    public Integer getLowerBound() {
+        return lowerBound;
+    }
+
+    public Integer getUpperBound() {
+        return upperBound;
+    }
+
+    @Override
+    public Integer getRandomValue() {
+        return random.nextInt((upperBound - lowerBound) + 1) + lowerBound;
+    }
+
 }

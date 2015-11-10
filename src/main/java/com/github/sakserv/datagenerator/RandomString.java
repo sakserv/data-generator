@@ -41,11 +41,11 @@ public class RandomString implements RandomValue<String> {
     }
 
     private void setDictionaryFileContents(File dictionaryFile) {
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(dictionaryFile.getName());
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        dictionaryFileContents = new ArrayList<>();
-        String line;
         try {
+            InputStream inputStream = getClass().getClassLoader().getResourceAsStream(dictionaryFile.getName());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            dictionaryFileContents = new ArrayList<>();
+            String line;
             while ((line = reader.readLine()) != null) {
                 dictionaryFileContents.add(line);
             }

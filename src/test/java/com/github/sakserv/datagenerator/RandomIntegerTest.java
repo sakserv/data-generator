@@ -1,13 +1,7 @@
 package com.github.sakserv.datagenerator;
 
-import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import java.io.File;
-import java.io.IOException;
 
 import static org.junit.Assert.*;
 
@@ -24,23 +18,30 @@ import static org.junit.Assert.*;
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-public class RandomStringTest {
+public class RandomIntegerTest {
 
-    private final static File dictionaryFile = new File("dictionary.txt");
-    private static RandomString randomString;
+    private static RandomInteger randomInteger;
+    private static final Integer lowerBound = 1;
+    private static final Integer upperBound = 100;
 
     @BeforeClass
     public static void setUp() {
-        randomString = new RandomString(dictionaryFile);
+        randomInteger = new RandomInteger(lowerBound, upperBound);
     }
 
     @Test
-    public void testGetDictionaryFile() throws Exception {
-        assertEquals(dictionaryFile, randomString.getDictionaryFile());
+    public void testGetLowerBound() throws Exception {
+        assertEquals(lowerBound, randomInteger.getLowerBound());
+    }
+
+    @Test
+    public void testGetUpperBound() throws Exception {
+        assertEquals(upperBound, randomInteger.getUpperBound());
     }
 
     @Test
     public void testGetRandomValue() throws Exception {
-        assertTrue(randomString.getRandomValue() instanceof String);
+        Integer randomValue = randomInteger.getRandomValue();
+        assertTrue(lowerBound <= randomValue && randomValue <= upperBound);
     }
 }
